@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://cdn.discordapp.com/attachments/1068644852532781056/1069331476186927194/updated-modified.png?size=4096" width="20%"/>
+<img src="https://raw.githubusercontent.com/Nxyi/Coffee-Client-1.19.4/master/src/main/resources/assets/coffee/icon.png" width="20%"/>
 </p>
 
 <h1 align="center">Coffee Client</h1>
