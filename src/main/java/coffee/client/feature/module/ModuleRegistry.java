@@ -270,7 +270,6 @@ public class ModuleRegistry {
         registerModule(Angryman.class);
         registerModule(UnfocusedCpu.class);
         registerModule(AntiScreen.class);
-        registerModule(ChestCMDExploit.class);
         registerModule(GhostBlockFly.class);
         registerModule(FakeAttack.class);
 
