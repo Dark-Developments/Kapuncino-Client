@@ -1,49 +1,51 @@
-# Coffee Client
-A very based 1.19.3 build with some of the best visuals currently on the market.
+<p align="center">
+<img src="https://raw.githubusercontent.com/Nxyi/Coffee-Client-1.19.4/master/src/main/resources/assets/coffee/icon.png" width="20%"/>
+</p>
 
-![](https://komarev.com/ghpvc/?username=Coffee-Client&style=for-the-badge&label=Views)
+<h1 align="center">Coffee Client</h1>
 
-## Warning
-I have entirely given up on microsoft's platform, and by proxy, the game too. Updates won't happen that often, if they even happen at all.
+<div style="display: grid; place-items: center;">
+    <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Nxyi/Coffee-Client-1.19.4?color=black"> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Nxyi/Coffee-Client-1.19.4?color=black&label=Developers">
+<img alt="GitHub contributors" src="https://img.shields.io/github/v/release/Nxyi/Coffee-Client-1.19.4?display_name=tag&include_prereleases&color=black">
+    <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Nxyi/Coffee-Client-1.19.4/total?color=black">
 
-The client partially uses outdated techniques, and some features don't work anymore. I cannot be fucked to fix them.
+</div>
 
-Use at your own risk, and do not come crying to me when shit doesn't work. Go back to meteor if you want an updated client.
+## Installation:
 
-## Installing
-### You will need:
-- Minecraft: Java Edition
-- Fabric Mod Loader
+**- Install The .jar**
 
-### How to install - stable version
-1. Get the latest release, `latest.jar`, from the `bin` directory in this repository.
-2. Drag `latest.jar` into your mods folder.
-3. Launch Minecraft with your Fabric launcher profile.
-### How to install - dev builds
-1. Get the latest dev build, `latest-dev.jar`, from the latest build action's artifacts (more info below)
-2. Drag `latest-dev.jar` into your mods folder
-3. Launch Minecraft with your Fabric launcher profile
+**- Download Fabric Loader From https://fabricmc.net**
 
-## How to get a release from a dev build
-1. Click the "Actions" tab
-   ![grafik](https://user-images.githubusercontent.com/99053360/185212546-648c489e-f114-4698-9e8a-5c5edbe14a3f.png)
-2. Click the latest entry
-   ![grafik](https://user-images.githubusercontent.com/99053360/185212644-5daf090f-c23e-4433-a025-4424de822a46.png)
-3. Click on the "latest-dev.jar" artifact and download it
-   ![grafik](https://user-images.githubusercontent.com/99053360/185212721-ca33a534-d563-4290-a042-515381664a73.png)
+**- Run 1.19.4 Vanilla**
 
-Note that you have to be logged in to download artifacts.
+**- Run the Fabric Loader and Pick Version 1.19.4 (Default)**
 
-## Using
-The ClickGUI is **not** bound by default. To bind it, run `.bind ClickGUI` and press the desired hotkey to bind to.
+**- Click Win + R and put %appdata% in the text box**
 
-To search inside of the ClickGUI, just type in the module name. The current search term will appear at the bottom right. Use `esc` to clear your search query
+**- Navigate to the ".minecraft" folder then "mods"**
 
-## Reporting bugs:
-Go to the issues page and open an issue. Make sure to attach anything related. Describe the bug as precisely as possible, and attach related crash report/log files, if available.
+**- Add the .jar to the mods folder and Run Minecraft 1.19.4 Fabric**
 
-## Making suggestions
-Go to the issues page and describe the suggestion. Make sure to specify any details you consider important. If your suggestion can benefit the client, it will be added at some point.
+**Your Done Now The Client Should be working as expected! If Not Please Join this discord ( https://discord.gg/8JtwkTPnRE ) and we will be happy to help!**
 
-## Contributing
-Fork this repository, add your code, and make a pull request. **MAKE SURE TO TEST THE FEATURE BEFORE OPENING THE PULL REQUEST**
+## Setup
+
+### Install Stable Version
+For instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+
+### Install Dev build
+Build the Jar from Source directly
+
+**WARNING**: Dev builds a unstable.
+## Info
+
+Fabric _~~Utility Mod.~~_ Hack Client.
+
+## Disclaimer
+
+For educational purposes only. Use at your own risk.
+
+## Credits
+**Clients**:  
+[Coffee Client](https://github.com/Coffee-Client/Coffee)  
