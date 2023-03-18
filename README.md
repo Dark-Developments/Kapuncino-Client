@@ -48,4 +48,4 @@ For educational purposes only. Use at your own risk.
 
 ## Credits
 **Clients**:  
-[Meteor Client](https://github.com/MeteorDevelopment/meteor-client)  
+[Coffee Client](https://github.com/Coffee-Client/Coffee)  
