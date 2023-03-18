@@ -272,7 +272,8 @@ public class ModuleRegistry {
         registerModule(AntiScreen.class);
         registerModule(GhostBlockFly.class);
         registerModule(FakeAttack.class);
-
+        registerModule(SpamBypass.class);
+        registerModule(ChatFilterBypass.class);
 
         rebuildSharedModuleList();
 
