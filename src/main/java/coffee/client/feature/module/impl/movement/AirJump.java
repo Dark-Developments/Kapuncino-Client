@@ -8,7 +8,12 @@ package coffee.client.feature.module.impl.movement;
 import coffee.client.CoffeeMain;
 import coffee.client.feature.module.Module;
 import coffee.client.feature.module.ModuleType;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.effect.StatusEffect;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AirJump extends Module {
 

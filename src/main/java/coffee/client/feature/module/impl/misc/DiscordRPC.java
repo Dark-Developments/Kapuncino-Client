@@ -66,15 +66,15 @@ public class DiscordRPC extends Module {
         RichPresence rp = new RichPresence();
         rp.setDetails(details.getValue());
         rp.setState(state.getValue());
-        rp.setLargeImage("icon", "discord.gg/moles");
-        rp.setSmallImage("haker", "0x150#8918");
+        rp.setLargeImage("big", "discord.gg/wRMaDcMceR");
+        rp.setSmallImage("smol", "not 0x150");
         rp.setStart(startTime);
         DiscordIPC.setActivity(rp);
     }
 
     void applyRpc() {
         IPCUser user = DiscordIPC.getUser();
-        Utils.Logging.success("Connected to " + user.username + "#" + user.discriminator);
+        Utils.Logging.success("Connected to " + user.username + "#" + user.discriminator + "\n (you got ratted, jkjk unless...)");
         setState();
         Notification.create(3000, "Discord RPC", Notification.Type.SUCCESS, "Connected!");
     }
@@ -84,7 +84,7 @@ public class DiscordRPC extends Module {
         startTime = Instant.now().getEpochSecond();
         Notification.create(3000, "Discord RPC", Notification.Type.INFO, "Attempting to connect...");
         offThreadExec.execute(() -> {
-            boolean result = DiscordIPC.start(996048747060543558L, this::applyRpc);
+            boolean result = DiscordIPC.start(1070090358836445196L, this::applyRpc);
             if (!result) {
                 Notification.create(5000, "Discord RPC", Notification.Type.ERROR, "Discord isn't open! Open discord and enable the module again.");
                 setEnabled(false);

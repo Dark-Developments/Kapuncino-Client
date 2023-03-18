@@ -3,9 +3,9 @@
   "id": "coffee",
   "version": "${version}",
   "name": "Coffee client",
-  "description": "Very based utility mod",
+  "description": "not shadow based",
   "authors": [
-    "0x150"
+    "not 0x150"
   ],
   "contributors": [
     "Authom",
