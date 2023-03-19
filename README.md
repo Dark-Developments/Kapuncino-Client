@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/Nxyi/Coffee-Client-1.19.4/master/src/main/resources/assets/coffee/icon.png" width="20%"/>
+<img src="https://raw.githubusercontent.com/Nxyi/Kapuncino-Client/master/src/main/resources/assets/coffee/other_icon.png" width="20%"/>
 </p>
 
 <h1 align="center">Kapuncino Client</h1>
