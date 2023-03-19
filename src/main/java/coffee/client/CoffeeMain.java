@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class CoffeeMain implements ModInitializer {
 
-    public static final String MOD_NAME = "Coffee";
+    public static final String MOD_NAME = "Kapuncino";
     public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
     public static final MinecraftClient client = MinecraftClient.getInstance();
     public static final File BASE = new File(MinecraftClient.getInstance().runDirectory, "coffee");

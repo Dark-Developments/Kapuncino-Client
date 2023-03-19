@@ -94,6 +94,7 @@ public class CommandRegistry {
         vanillaCommands.add(new ApplyEffect());
         vanillaCommands.add(new Search());
         vanillaCommands.add(new BaritoneCommand());
+        vanillaCommands.add(new ClipCommand());
 
         rebuildSharedCommands();
     }

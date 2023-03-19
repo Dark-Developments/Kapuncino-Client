@@ -12,7 +12,7 @@
     "sources": "https://github.com/Coffee-Client/Coffee"
   },
   "license": "All-Rights-Reserved",
-  "icon": "assets/coffee/icon.png",
+  "icon": "assets/coffee/other_icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
