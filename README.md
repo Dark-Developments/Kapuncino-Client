@@ -2,7 +2,7 @@
 <img src="https://raw.githubusercontent.com/Nxyi/Coffee-Client-1.19.4/master/src/main/resources/assets/coffee/icon.png" width="20%"/>
 </p>
 
-<h1 align="center">Coffee Client</h1>
+<h1 align="center">Kapuncino Client</h1>
 
 <div style="display: grid; place-items: center;">
     <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Nxyi/Coffee-Client-1.19.4?color=black"> <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Nxyi/Coffee-Client-1.19.4?color=black&label=Developers">
@@ -10,6 +10,9 @@
     <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Nxyi/Coffee-Client-1.19.4/total?color=black">
 
 </div>
+
+## Info:
+**- Just updated Coffee Client and added some modules**
 
 ## Installation:
 
