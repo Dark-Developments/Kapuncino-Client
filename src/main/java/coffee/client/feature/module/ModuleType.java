@@ -13,7 +13,7 @@ public enum ModuleType {
     EXPLOIT("Exploit", "exploit.png"),
     ADDON_PROVIDED("Addons", "addons.png"),
     COMBAT("Combat", "combat.png"),
-    GRIEF("Grief", "combat.png"),
+    GRIEF("Grief", "grief.png"),
     HIDDEN("", "");
 
 
