@@ -2,14 +2,10 @@
   "schemaVersion": 1,
   "id": "coffee",
   "version": "${version}",
-  "name": "Coffee client",
+  "name": "Kapuncino client",
   "description": "not shadow based",
   "authors": [
     "not 0x150"
-  ],
-  "contributors": [
-    "Authom",
-    "Twelve"
   ],
   "contact": {
     "homepage": "https://client.coffee",

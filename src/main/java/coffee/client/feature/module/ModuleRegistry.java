@@ -40,7 +40,7 @@ import coffee.client.feature.module.impl.render.UnfocusedCpu;
 import coffee.client.feature.module.impl.render.Waypoints;
 import coffee.client.feature.module.impl.render.Zoom;
 import coffee.client.feature.module.impl.world.AirPlace;
-import coffee.client.feature.module.impl.world.Annihilator;
+import coffee.client.feature.module.impl.Grief.Annihilator;
 import coffee.client.feature.module.impl.world.AnyPlacer;
 import coffee.client.feature.module.impl.world.AutoFish;
 import coffee.client.feature.module.impl.world.AutoIgnite;

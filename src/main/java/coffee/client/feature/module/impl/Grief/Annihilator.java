@@ -3,7 +3,7 @@
  * Some rights reserved, refer to LICENSE file.
  */
 
-package coffee.client.feature.module.impl.world;
+package coffee.client.feature.module.impl.Grief;
 
 import coffee.client.CoffeeMain;
 import coffee.client.feature.config.DoubleSetting;
@@ -26,7 +26,7 @@ public class Annihilator extends Module {
 
 
     public Annihilator() {
-        super("Annihilator", "Nukes whatever you click at, requires /fill permissions", ModuleType.WORLD);
+        super("Annihilator", "Nukes whatever you click at, requires /fill permissions", ModuleType.GRIEF);
     }
 
     @MessageSubscription
