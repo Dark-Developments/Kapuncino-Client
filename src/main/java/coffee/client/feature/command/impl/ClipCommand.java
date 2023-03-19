@@ -12,7 +12,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 
 public class ClipCommand extends Command {
     public ClipCommand() {
-        super("clip", "better vclip");
+        super("clip", "Better vclip", "Clip");
     }
 
     @Override
