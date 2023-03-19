@@ -3,7 +3,7 @@
  * Some rights reserved, refer to LICENSE file.
  */
 
-package coffee.client.feature.module.impl.world;
+package coffee.client.feature.module.impl.Grief;
 
 import coffee.client.CoffeeMain;
 import coffee.client.feature.config.DoubleSetting;
@@ -39,7 +39,7 @@ public class Decimator extends Module {
     Vec3d latest = null;
 
     public Decimator() {
-        super("Decimator", "Transforms a radius around you to void", ModuleType.WORLD);
+        super("Decimator", "Transforms a radius around you to void", ModuleType.GRIEF);
     }
 
     @Override

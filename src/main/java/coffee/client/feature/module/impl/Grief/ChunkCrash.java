@@ -3,7 +3,7 @@
  * Some rights reserved, refer to LICENSE file.
  */
 
-package coffee.client.feature.module.impl.exploit;
+package coffee.client.feature.module.impl.Grief;
 
 import coffee.client.CoffeeMain;
 import coffee.client.feature.config.DoubleSetting;
@@ -40,7 +40,7 @@ public class ChunkCrash extends Module {
     int i = 0;
 
     public ChunkCrash() {
-        super("ChunkCrash", "Crashes the server by requesting chunks", ModuleType.EXPLOIT);
+        super("ChunkCrash", "Crashes the server by requesting chunks", ModuleType.GRIEF);
     }
 
     @Override
