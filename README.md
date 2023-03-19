@@ -10,6 +10,7 @@
     <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Nxyi/Coffee-Client-1.19.4/total?color=black">
 
 </div>
+
 ## Info:
 **- Just updated Coffee Client and added some modules**
 
