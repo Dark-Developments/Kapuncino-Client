@@ -85,6 +85,10 @@ dependencies {
 	}
 }
 
+loom {
+	accessWidenerPath = file("src/main/resources/Kapuncino-Client.accesswidener")
+}
+
 processResources {
 	inputs.property "version", project.version
 

@@ -24,6 +24,7 @@
   "mixins": [
     "coffee.mixins.json"
   ],
+  "accessWidener": "Kapuncino-Client.accesswidener",
   "depends": {
     "fabricloader": ">=0.14.11",
     "minecraft": ">=1.19.4"

@@ -40,26 +40,7 @@ import coffee.client.feature.module.impl.render.Trail;
 import coffee.client.feature.module.impl.render.UnfocusedCpu;
 import coffee.client.feature.module.impl.render.Waypoints;
 import coffee.client.feature.module.impl.render.Zoom;
-import coffee.client.feature.module.impl.world.AirPlace;
-import coffee.client.feature.module.impl.world.AnyPlacer;
-import coffee.client.feature.module.impl.world.AutoFish;
-import coffee.client.feature.module.impl.world.AutoIgnite;
-import coffee.client.feature.module.impl.world.AutoLavacast;
-import coffee.client.feature.module.impl.world.AutoSign;
-import coffee.client.feature.module.impl.world.AutoTNT;
-import coffee.client.feature.module.impl.world.AutoTool;
-import coffee.client.feature.module.impl.world.BlockTagViewer;
-import coffee.client.feature.module.impl.world.Boom;
-import coffee.client.feature.module.impl.world.FastUse;
-import coffee.client.feature.module.impl.world.Flattener;
-import coffee.client.feature.module.impl.world.GodBridge;
-import coffee.client.feature.module.impl.world.InstantBreak;
-import coffee.client.feature.module.impl.world.MassUse;
-import coffee.client.feature.module.impl.world.NoBreakDelay;
-import coffee.client.feature.module.impl.world.Nuker;
-import coffee.client.feature.module.impl.world.Scaffold;
-import coffee.client.feature.module.impl.world.SurvivalNuker;
-import coffee.client.feature.module.impl.world.XRAY;
+import coffee.client.feature.module.impl.world.*;
 import org.apache.logging.log4j.Level;
 
 import java.lang.reflect.Constructor;
@@ -277,6 +258,8 @@ public class ModuleRegistry {
         registerModule(MapFuck.class);
         registerModule(MultiShot.class);
         registerModule(AutoRun.class);
+        registerModule(GhostHand.class);
+        registerModule(NoChatNormalisation.class);
 
         rebuildSharedModuleList();
 

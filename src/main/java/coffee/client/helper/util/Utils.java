@@ -9,12 +9,14 @@ import coffee.client.CoffeeMain;
 import coffee.client.helper.font.adapter.FontAdapter;
 import coffee.client.helper.font.renderer.ColoredTextSegment;
 import coffee.client.helper.render.Texture;
+import coffee.client.helper.util.World.BlockEntityIterator;
 import coffee.client.mixin.ClientWorldMixin;
 import coffee.client.mixin.IMinecraftClientMixin;
 import coffee.client.mixin.IRenderTickCounterMixin;
 import coffee.client.mixinUtil.ChatHudDuck;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.network.PendingUpdateManager;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
@@ -61,6 +63,10 @@ public class Utils {
 
     private static final ExecutorService esv = Executors.newCachedThreadPool();
     public static boolean sendPackets = true;
+
+    public static Iterable<BlockEntity> blockEntities() {
+        return BlockEntityIterator::new;
+    }
 
     public static Vec3d relativeToAbsolute(Vec3d absRootPos, Vec2f rotation, Vec3d relative) {
         double xOffset = relative.x;
