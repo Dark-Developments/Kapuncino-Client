@@ -10,6 +10,7 @@ import coffee.client.feature.module.ModuleRegistry;
 import coffee.client.feature.module.impl.misc.AllowFormatCodes;
 import net.minecraft.SharedConstants;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -22,5 +23,13 @@ public class SharedConstantsMixin {
         if (ModuleRegistry.getByClass(AllowFormatCodes.class).isEnabled() && chr == '§') {
             cir.setReturnValue(true);
         }
+    }
+
+    /**
+     * @author Andrew Steinborn
+     * @reason Disables any possibility of enabling DFU "optimizations"
+     */
+    @Overwrite
+    public static void enableDataFixerOptimization() {
     }
 }
