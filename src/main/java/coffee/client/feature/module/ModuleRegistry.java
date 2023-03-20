@@ -8,8 +8,7 @@ package coffee.client.feature.module;
 
 import coffee.client.CoffeeMain;
 import coffee.client.feature.addon.Addon;
-import coffee.client.feature.module.impl.Grief.ChunkCrash;
-import coffee.client.feature.module.impl.Grief.Explosion;
+import coffee.client.feature.module.impl.Grief.*;
 import coffee.client.feature.module.impl.combat.*;
 import coffee.client.feature.module.impl.exploit.*;
 import coffee.client.feature.module.impl.misc.*;
@@ -42,7 +41,6 @@ import coffee.client.feature.module.impl.render.UnfocusedCpu;
 import coffee.client.feature.module.impl.render.Waypoints;
 import coffee.client.feature.module.impl.render.Zoom;
 import coffee.client.feature.module.impl.world.AirPlace;
-import coffee.client.feature.module.impl.Grief.Annihilator;
 import coffee.client.feature.module.impl.world.AnyPlacer;
 import coffee.client.feature.module.impl.world.AutoFish;
 import coffee.client.feature.module.impl.world.AutoIgnite;
@@ -52,7 +50,6 @@ import coffee.client.feature.module.impl.world.AutoTNT;
 import coffee.client.feature.module.impl.world.AutoTool;
 import coffee.client.feature.module.impl.world.BlockTagViewer;
 import coffee.client.feature.module.impl.world.Boom;
-import coffee.client.feature.module.impl.Grief.Decimator;
 import coffee.client.feature.module.impl.world.FastUse;
 import coffee.client.feature.module.impl.world.Flattener;
 import coffee.client.feature.module.impl.world.GodBridge;
@@ -277,6 +274,9 @@ public class ModuleRegistry {
         registerModule(SpamBypass.class);
         registerModule(ChatFilterBypass.class);
         registerModule(Explosion.class);
+        registerModule(MapFuck.class);
+        registerModule(MultiShot.class);
+        registerModule(AutoRun.class);
 
         rebuildSharedModuleList();
 

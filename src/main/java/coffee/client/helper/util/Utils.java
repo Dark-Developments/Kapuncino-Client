@@ -35,10 +35,7 @@ import net.minecraft.text.TextColor;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import org.lwjgl.BufferUtils;
@@ -50,18 +47,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
-import java.util.AbstractMap;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Queue;
-import java.util.Spliterator;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.BooleanSupplier;
@@ -75,6 +61,36 @@ public class Utils {
 
     private static final ExecutorService esv = Executors.newCachedThreadPool();
     public static boolean sendPackets = true;
+
+    public static Vec3d relativeToAbsolute(Vec3d absRootPos, Vec2f rotation, Vec3d relative) {
+        double xOffset = relative.x;
+        double yOffset = relative.y;
+        double zOffset = relative.z;
+        float rot = 0.017453292F;
+        float f = MathHelper.cos((rotation.y + 90.0F) * rot);
+        float g = MathHelper.sin((rotation.y + 90.0F) * rot);
+        float h = MathHelper.cos(-rotation.x * rot);
+        float i = MathHelper.sin(-rotation.x * rot);
+        float j = MathHelper.cos((-rotation.x + 90.0F) * rot);
+        float k = MathHelper.sin((-rotation.x + 90.0F) * rot);
+        Vec3d vec3d2 = new Vec3d(f * h, i, g * h);
+        Vec3d vec3d3 = new Vec3d(f * j, k, g * j);
+        Vec3d vec3d4 = vec3d2.crossProduct(vec3d3).multiply(-1.0D);
+        double d = vec3d2.x * zOffset + vec3d3.x * yOffset + vec3d4.x * xOffset;
+        double e = vec3d2.y * zOffset + vec3d3.y * yOffset + vec3d4.y * xOffset;
+        double l = vec3d2.z * zOffset + vec3d3.z * yOffset + vec3d4.z * xOffset;
+        return new Vec3d(absRootPos.x + d, absRootPos.y + e, absRootPos.z + l);
+    }
+
+    public static String rndStr(int size) {
+        StringBuilder buf = new StringBuilder();
+        String[] chars = new String[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+        Random r = new Random();
+        for (int i = 0; i < size; i++) {
+            buf.append(chars[r.nextInt(chars.length)]);
+        }
+        return buf.toString();
+    }
 
     public static void waitUntil(BooleanSupplier e, Runnable v) {
         if (!e.getAsBoolean()) {
