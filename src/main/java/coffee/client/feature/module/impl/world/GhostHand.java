@@ -23,7 +23,7 @@ public class GhostHand extends Module {
 
     @Override
     public void tick() {
-        if (!(CoffeeMain.client.options.useKey.isPressed() || CoffeeMain.client.player.isSneaking())) return;
+        if (!(CoffeeMain.client.options.useKey.isPressed())) return;
 
         for (BlockEntity blockEntity : Utils.blockEntities()) {
             if (BlockPos.ofFloored(CoffeeMain.client.player.raycast(CoffeeMain.client.interactionManager.getReachDistance(), CoffeeMain.client.getTickDelta(), false).getPos()).equals(blockEntity.getPos())) return;

@@ -16,7 +16,7 @@ public interface Texture {
     SpritesheetTextureSet ACTION_TYPES = SpritesheetTextureSet.fromJson("https://raw.githubusercontent.com/Nxyi/Resources/master/ss_actions.png",
         Utils.loadFromResources("sprite/actions.json"));
     DirectTexture BACKGROUND = new DirectTexture("https://raw.githubusercontent.com/Nxyi/Resources/master/background.png");
-    ResourceTexture ICON = new ResourceTexture("assets/coffee/icon.png");
+    ResourceTexture ICON = new ResourceTexture("assets/coffee/-icon.png");
 
     void load() throws Throwable;
 
