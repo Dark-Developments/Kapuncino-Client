@@ -12,7 +12,7 @@
 </div>
 
 ## Info:
-**- Just updated Coffee Client and added some modules**
+**- Updated Coffee Client and added stuff**
 
 ## Installation:
 
