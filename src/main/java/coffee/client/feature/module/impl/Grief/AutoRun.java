@@ -25,7 +25,7 @@ public class AutoRun extends Module {
             Utils.Logging.message("You were opped, running commands");
             String[] command = commands.getValue().split(";");
             for (String cmd : command) {
-                CoffeeMain.client.player.networkHandler.sendChatMessage(cmd);
+                CoffeeMain.client.player.networkHandler.sendCommand(cmd.substring(1));
             }
             this.setEnabled(false);
         }

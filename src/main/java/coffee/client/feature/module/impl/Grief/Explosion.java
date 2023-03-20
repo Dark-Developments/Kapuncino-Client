@@ -48,9 +48,9 @@ public class Explosion extends Module {
                     if (new Vec3d(pos.getX(), pos.getY(), pos.getZ()).distanceTo(new Vec3d(hit.getX(), hit.getY(), hit.getZ())) > size.getValue() || client.world.getBlockState(pos).isAir())
                         continue;
                     BlockState s = client.world.getBlockState(pos);
-                    client.player.networkHandler.sendChatMessage("/setblock " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " minecraft:air");
+                    client.player.networkHandler.sendCommand("setblock " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " minecraft:air");
                     Double[] c = getRandoms();
-                    client.player.networkHandler.sendChatMessage("/summon falling_block " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " {BlockState:{Name:\"minecraft:" + getBlockNameFromTranslationKey(s.getBlock().getTranslationKey()) + "\"},Time:1,Motion:[" + c[0] + ",1.0," + c[1] + "]}");
+                    client.player.networkHandler.sendCommand("summon falling_block " + pos.getX() + " " + pos.getY() + " " + pos.getZ() + " {BlockState:{Name:\"minecraft:" + getBlockNameFromTranslationKey(s.getBlock().getTranslationKey()) + "\"},Time:1,Motion:[" + c[0] + ",1.0," + c[1] + "]}");
                 }
     }
 
