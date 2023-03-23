@@ -260,6 +260,7 @@ public class ModuleRegistry {
         registerModule(AutoRun.class);
         registerModule(GhostHand.class);
         registerModule(NoChatNormalisation.class);
+        registerModule(InstaMine.class);
 
         rebuildSharedModuleList();
 

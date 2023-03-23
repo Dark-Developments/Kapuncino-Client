@@ -6,6 +6,7 @@
 package coffee.client.feature.module.impl.world;
 
 import coffee.client.CoffeeMain;
+import coffee.client.feature.config.DoubleSetting;
 import coffee.client.feature.config.EnumSetting;
 import coffee.client.feature.module.Module;
 import coffee.client.feature.module.ModuleType;
@@ -32,6 +33,9 @@ public class AutoLavacast extends Module {
     final EnumSetting<Mode> mode = this.config.create(new EnumSetting.Builder<>(Mode.Bypass).name("Mode")
         .description("How to place and move. Bypass is slow but looks legit, fast is VERY speedy")
         .get());
+
+    final DoubleSetting speed = this.config.create(new DoubleSetting.Builder(50).name("Speed").description("How fast to do fast mode").min(10).max(100).precision(10).get());
+
     final Timer timer = new Timer();
     Input original;
     Vec3i incr;
@@ -57,7 +61,7 @@ public class AutoLavacast extends Module {
 
     @Override
     public void onFastTick() {
-        if (mode.getValue() == Mode.Fast && !timer.hasExpired(100)) {
+        if (mode.getValue() == Mode.Fast && !timer.hasExpired(speed.getValue().intValue())) {
             return;
         }
         timer.reset();

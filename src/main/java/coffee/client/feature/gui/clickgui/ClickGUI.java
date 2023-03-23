@@ -33,7 +33,7 @@ import java.util.List;
 
 public class ClickGUI extends AAScreen {
     private static ClickGUI instance;
-    boolean initialized = false;
+    static boolean initialized = false;
     boolean closing = false;
     double progress = 0;
 
@@ -46,6 +46,10 @@ public class ClickGUI extends AAScreen {
     String tooltipContent;
 
     ClickableTextElement help;
+
+    public static boolean enabled(){
+        return initialized;
+    }
 
     public static void reInit() {
         if (instance != null) {
