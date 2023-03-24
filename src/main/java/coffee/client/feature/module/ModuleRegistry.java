@@ -261,6 +261,9 @@ public class ModuleRegistry {
         registerModule(GhostHand.class);
         registerModule(NoChatNormalisation.class);
         registerModule(InstaMine.class);
+        registerModule(Equipper.class);
+        registerModule(ClickTP.class);
+        registerModule(Fling.class);
 
         rebuildSharedModuleList();
 

@@ -16,9 +16,8 @@ public class FakeAttack extends Module {
     }
 
     @MessageSubscription
-    void onpacket(AttackEntityEvent event){
-        event.cancel();
-        CoffeeMain.client.player.networkHandler.sendPacket(new HandSwingC2SPacket(Hand.MAIN_HAND));
+    void onpacket(PacketEvent.Sent event){
+        if (event.getPacket() instanceof HandSwingC2SPacket) event.cancel();
     }
 
     @Override

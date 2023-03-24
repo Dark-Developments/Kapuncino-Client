@@ -25,6 +25,7 @@
     "SharedConstantsMixin",
     "SimpleOptionMixin",
     "StyleMixin",
+    "Vec3dMixin",
     "entity.AreaEffectCloudEntityMixin",
     "entity.ClientPlayerEntityMixin",
     "entity.EntityMixin",

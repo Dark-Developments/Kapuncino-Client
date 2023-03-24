@@ -6,9 +6,12 @@
 package coffee.client.feature.module.impl.movement;
 
 import coffee.client.CoffeeMain;
+import coffee.client.feature.config.DoubleSetting;
 import coffee.client.feature.module.Module;
 import coffee.client.feature.module.ModuleType;
+import coffee.client.feature.utils.Jinx.PlayerUtils;
 import coffee.client.helper.util.Utils;
+import coffee.client.mixinUtil.IVec3d;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.math.MatrixStack;
@@ -24,64 +27,58 @@ public class EntityFly extends Module {
 
     final KeyBinding down = new KeyBinding("", GLFW.GLFW_KEY_LEFT_ALT, "");
     Entity lastRide = null;
+    int kickdelay;
+
+    final DoubleSetting verticalSpeed  = this.config.create(new DoubleSetting.Builder(10).name("vertical-speed").description("vertical-speed in blocks / second").min(1).max(100).precision(0).get());
+    final DoubleSetting bypass = this.config.create(new DoubleSetting.Builder(20).name("bypass").description("ticks between anti-kick packet").min(1).max(100).precision(0).get());
+    final DoubleSetting speed = this.config.create(new DoubleSetting.Builder(10).name("speed").description("Speed in blocks / second").min(1).max(100).precision(0).get());
+
 
     public EntityFly() {
         super("EntityFly", "Allows you to fly with any entity", ModuleType.MOVEMENT);
     }
 
     @Override
+    public void onFastTick() {
+        if (client.player.hasVehicle()) {
+
+            client.player.getVehicle().setNoGravity(true);
+            client.player.getVehicle().setYaw(client.player.getYaw());
+
+            // Horizontal movement
+            Vec3d vel = PlayerUtils.getHorizontalVelocity(speed.getValue().intValue());
+            double velX = vel.getX();
+            double velY = 0;
+            double velZ = vel.getZ();
+
+            // Vertical movement
+            if (kickdelay <= 0) return;
+            if (client.options.jumpKey.isPressed()) velY += verticalSpeed.getValue().intValue() / 20;
+            if (down.isPressed()) velY -= verticalSpeed.getValue().intValue() / 20;
+
+            // Apply velocity
+            ((IVec3d) client.player.getVehicle().getVelocity()).set(velX, velY, velZ);
+        }
+    }
+
+    @Override
     public void tick() {
-        if (CoffeeMain.client.player == null || CoffeeMain.client.getNetworkHandler() == null) {
-            return;
+        if (client.player.hasVehicle()) {
+            Entity vehicle = client.player.getVehicle();
+            vehicle.setOnGround(true);
+            if (kickdelay <= 0) {
+                vehicle.setPosition(vehicle.getX(), vehicle.getY() - 0.04, vehicle.getZ());
+                kickdelay = bypass.getValue().intValue();
+            } else {
+                kickdelay--;
+            }
         }
-        Entity vehicle = CoffeeMain.client.player.getVehicle();
-        if (vehicle == null) {
-            return;
-        }
-        lastRide = vehicle;
-        vehicle.setNoGravity(true);
-        if (vehicle instanceof MobEntity) {
-            ((MobEntity) vehicle).setAiDisabled(true);
-        }
-        GameOptions go = CoffeeMain.client.options;
-        float y = Objects.requireNonNull(client.player).getYaw();
-        int mx = 0, my = 0, mz = 0;
-        if (go.jumpKey.isPressed()) {
-            my++;
-        }
-        if (go.backKey.isPressed()) {
-            mz++;
-        }
-        if (go.leftKey.isPressed()) {
-            mx--;
-        }
-        if (go.rightKey.isPressed()) {
-            mx++;
-        }
-        if (down.isPressed()) {
-            my--;
-        }
-        if (go.forwardKey.isPressed()) {
-            mz--;
-        }
-        double ts = 1;
-        double s = Math.sin(Math.toRadians(y));
-        double c = Math.cos(Math.toRadians(y));
-        double nx = ts * mz * s;
-        double nz = ts * mz * -c;
-        double ny = ts * my;
-        nx += ts * mx * -c;
-        nz += ts * mx * -s;
-        Vec3d nv3 = new Vec3d(nx, ny - 0.1, nz);
-        vehicle.setVelocity(nv3);
-        vehicle.setYaw(client.player.getYaw());
-        VehicleMoveC2SPacket p = new VehicleMoveC2SPacket(vehicle);
-        Objects.requireNonNull(client.getNetworkHandler()).sendPacket(p);
     }
 
     @Override
     public void enable() {
         Utils.Logging.message("Press left alt to descend");
+        kickdelay = bypass.getValue().intValue();
     }
 
     @Override
