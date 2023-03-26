@@ -8,6 +8,8 @@ package coffee.client.feature.module.impl.movement;
 import coffee.client.feature.config.EnumSetting;
 import coffee.client.feature.module.Module;
 import coffee.client.feature.module.ModuleType;
+import coffee.client.feature.utils.FakePlayerEntity;
+import coffee.client.feature.utils.Jinx.JinxUtils;
 import me.x150.jmessenger.MessageSubscription;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.network.packet.Packet;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Blink extends Module {
+    private FakePlayerEntity fakePlayer;
 
     final List<Packet<?>> queue = new ArrayList<>();
     final EnumSetting<Mode> mode = this.config.create(new EnumSetting.Builder<>(Mode.Delay).name("Mode")
@@ -45,7 +48,7 @@ public class Blink extends Module {
 
     @Override
     public void enable() {
-
+        JinxUtils.SpawnFakePlayer();
     }
 
     @Override
@@ -58,6 +61,8 @@ public class Blink extends Module {
             client.getNetworkHandler().sendPacket(packet);
         }
         queue.clear();
+
+        JinxUtils.RemoveFakePlayer();
     }
 
     @Override

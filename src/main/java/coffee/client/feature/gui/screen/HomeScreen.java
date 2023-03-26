@@ -31,6 +31,11 @@ import org.apache.commons.io.IOUtils;
 import org.lwjgl.opengl.GL40C;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.UUID;
@@ -134,6 +139,8 @@ public class HomeScreen extends AAScreen {
     public void renderInternal(MatrixStack stack, int mouseX, int mouseY, float delta) {
 
         //        Renderer.R2D.renderQuad(stack, new Color(20, 20, 20), 0, 0, width, height);
+
+
 
         coffee.client.helper.render.textures.Texture.BACKGROUND.bind();
         Renderer.R2D.renderTexture(stack, 0, 0, width, height, 0, 0, width, height, width, height);

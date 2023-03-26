@@ -6,6 +6,7 @@
 package coffee.client.feature.utils.Jinx;
 
 import coffee.client.CoffeeMain;
+import coffee.client.feature.utils.FakePlayerEntity;
 import coffee.client.mixin.ClientConnectionInvoker;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -30,6 +31,22 @@ import java.util.Random;
 
 
 public class JinxUtils {
+    public static FakePlayerEntity fakePlayer;
+    public static void SpawnFakePlayer(){
+        fakePlayer = new FakePlayerEntity();
+
+        //For some reason doesnt render on first enable in world
+        //So for quick fix we un-render then re-render it :> bad fix ik but easy fix
+        fakePlayer.resetPlayerPosition();
+        fakePlayer.despawn();
+
+        fakePlayer = new FakePlayerEntity();
+    }
+
+    public static void RemoveFakePlayer(){
+        fakePlayer.resetPlayerPosition();
+        fakePlayer.despawn();
+    }
     public static String generateMessage(int amount) {
         StringBuilder message = new StringBuilder();
         for (int i = 0; i < amount; i++) message.append((char) (0x4e00 + (int) (Math.random() * (0x9fa5 - 0x4e00 + 1))));

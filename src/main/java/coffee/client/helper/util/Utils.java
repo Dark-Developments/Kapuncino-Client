@@ -526,7 +526,7 @@ public class Utils {
         public static int sendMessage(Text t) {
             MutableText append = Text.empty()
                 .append(Text.literal("[").styled(style -> style.withColor(0x454545)))
-                .append(Text.literal("Coffee").styled(style -> style.withColor(0x3AD99D)))
+                .append(Text.literal(CoffeeMain.MOD_NAME).styled(style -> style.withColor(0x807e7e)))
                 .append(Text.literal("]").styled(style -> style.withColor(0x454545)))
                 .append(" ")
                 .append(t);

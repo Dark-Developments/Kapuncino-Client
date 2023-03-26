@@ -5,9 +5,12 @@
 
 package coffee.client.feature.module.impl.render;
 
+import coffee.client.feature.config.BooleanSetting;
 import coffee.client.feature.config.DoubleSetting;
 import coffee.client.feature.module.Module;
 import coffee.client.feature.module.ModuleType;
+import coffee.client.feature.utils.FakePlayerEntity;
+import coffee.client.feature.utils.Jinx.JinxUtils;
 import coffee.client.helper.event.impl.ChunkRenderQuery;
 import coffee.client.helper.event.impl.NoclipQueryEvent;
 import coffee.client.helper.event.impl.PacketEvent;
@@ -16,16 +19,22 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.network.packet.c2s.play.PlayerInputC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import net.minecraft.network.packet.s2c.play.DeathMessageS2CPacket;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.Objects;
 
 public class Freecam extends Module {
+
+    final BooleanSetting deathtoggle = this.config.create(new BooleanSetting.Builder(true).name("Toggle on death")
+            .description("Toggle on death")
+            .get());
     final DoubleSetting speed = this.config.create(new DoubleSetting.Builder(2).name("Speed").description("The speed to fly with").min(0).max(10).precision(1).get());
     Vec3d startloc;
     float pitch = 0f;
     float yaw = 0f;
     boolean flewBefore;
+    private FakePlayerEntity fakePlayer;
 
     public Freecam() {
         super("Freecam", "Imitates spectator without you having permission to use it", ModuleType.RENDER);
@@ -68,6 +77,8 @@ public class Freecam extends Module {
         client.gameRenderer.setRenderHand(false);
         flewBefore = client.player.getAbilities().flying;
         client.player.setOnGround(false);
+
+        JinxUtils.SpawnFakePlayer();
     }
 
     @Override
@@ -83,6 +94,17 @@ public class Freecam extends Module {
         client.player.getAbilities().flying = flewBefore;
         client.player.getAbilities().setFlySpeed(0.05f);
         client.player.setVelocity(0, 0, 0);
+
+        JinxUtils.RemoveFakePlayer();
+    }
+
+    @MessageSubscription()
+    void onteleport(PacketEvent.Received event){
+        if (event.getPacket() instanceof DeathMessageS2CPacket packet){
+            if (client.world.getEntityById(packet.getEntityId()) == client.player && deathtoggle.getValue()){
+                toggle();
+            }
+        }
     }
 
     @Override

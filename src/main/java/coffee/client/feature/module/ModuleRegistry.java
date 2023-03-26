@@ -251,7 +251,6 @@ public class ModuleRegistry {
         registerModule(UnfocusedCpu.class);
         registerModule(AntiScreen.class);
         registerModule(GhostBlockFly.class);
-        registerModule(FakeAttack.class);
         registerModule(SpamBypass.class);
         registerModule(ChatFilterBypass.class);
         registerModule(Explosion.class);
@@ -264,6 +263,7 @@ public class ModuleRegistry {
         registerModule(Equipper.class);
         registerModule(ClickTP.class);
         registerModule(Fling.class);
+        registerModule(WorldGuardBypass.class);
 
         rebuildSharedModuleList();
 

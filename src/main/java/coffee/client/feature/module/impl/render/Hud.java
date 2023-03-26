@@ -7,6 +7,7 @@ package coffee.client.feature.module.impl.render;
 
 import coffee.client.CoffeeMain;
 import coffee.client.feature.config.BooleanSetting;
+import coffee.client.feature.gui.clickgui.ClickGUI;
 import coffee.client.feature.gui.hud.HudRenderer;
 import coffee.client.feature.gui.notifications.Notification;
 import coffee.client.feature.gui.notifications.NotificationRenderer;
@@ -24,6 +25,8 @@ import coffee.client.helper.util.Utils;
 import coffee.client.mixin.render.IInGameHudMixin;
 import coffee.client.mixin.screen.IDebugHudMixin;
 import me.x150.jmessenger.MessageSubscription;
+import net.minecraft.client.gui.screen.GameMenuScreen;
+import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.network.packet.s2c.play.WorldTimeUpdateS2CPacket;
@@ -165,6 +168,7 @@ public class Hud extends Module {
     }
 
     public void drawTopLeft(MatrixStack ms) {
+        if ((client.currentScreen instanceof ClickGUI) || client.currentScreen instanceof GameMenuScreen) return;
         ms.translate(5, 5, 0);
         List<String> values = new ArrayList<>();
         if (this.fps.getValue()) {

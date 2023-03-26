@@ -24,6 +24,7 @@ import java.util.Random;
 public class AutoFish extends Module {
     static int delay = 0;
     final DoubleSetting lazytime = this.config.create(new DoubleSetting.Builder(1).min(1)
+            .precision(0)
         .max(40)
         .name("Random")
         .description("the randomness added to fishing times")
@@ -36,7 +37,8 @@ public class AutoFish extends Module {
     @MessageSubscription
     void on(PacketEvent.Received event) {
         if (event.getPacket() instanceof PlaySoundS2CPacket packet) {
-            if (packet.getSound().equals(SoundEvents.ENTITY_FISHING_BOBBER_SPLASH)) {
+            if (packet.getSound().equals("entity.fishing_bobber.splash")){
+                Utils.Logging.message("Fish");
                 new Thread(() -> {
                     Utils.sleep(lazyRoundTime() * 100L);
                     click();
