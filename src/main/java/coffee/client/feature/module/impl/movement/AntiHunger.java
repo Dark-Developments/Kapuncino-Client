@@ -8,21 +8,23 @@ package coffee.client.feature.module.impl.movement;
 import coffee.client.feature.module.Module;
 import coffee.client.feature.module.ModuleType;
 import coffee.client.helper.event.impl.PacketEvent;
+import coffee.client.mixin.network.IPlayerMoveC2SPacketMixin;
 import me.x150.jmessenger.MessageSubscription;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
 public class AntiHunger extends Module {
     public AntiHunger() {
-        super("AntiHunger", "Reduces hunger by pretending you're not sprinting", ModuleType.RENDER);
+        super("AntiHunger", "Reduces hunger", ModuleType.MOVEMENT);
     }
 
     @MessageSubscription
-    void onPacket(PacketEvent.Sent s) {
-        Packet<?> packet = s.getPacket();
-        if (packet instanceof ClientCommandC2SPacket cmd && cmd.getMode() == ClientCommandC2SPacket.Mode.START_SPRINTING) {
-            s.cancel(); // stop sprinting is included here
+    void onPacket(PacketEvent.Sent event) {
+        if (event.getPacket() instanceof PlayerMoveC2SPacket packet){
+            IPlayerMoveC2SPacketMixin accessor = (IPlayerMoveC2SPacketMixin) packet;
+            accessor.setOnGround(false);
         }
     }
 

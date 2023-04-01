@@ -240,6 +240,11 @@ public class ModuleRegistry {
         registerModule(WorldGuardBypass.class);
         registerModule(NameProtect.class);
         registerModule(EntityControl.class);
+        registerModule(AutoTotem.class);
+        registerModule(NoSwing.class);
+        registerModule(AutoWalk.class);
+        registerModule(PortalGodMode.class);
+        registerModule(AntiHunger.class);
 
         rebuildSharedModuleList();
 
