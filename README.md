@@ -14,6 +14,8 @@
 ## Info:
 **- Updated [Coffee Client](https://github.com/Coffee-Client/Coffee) and added stuff**
 
+**- Note some utils are taken from other clients in which i do give credit to them in release description**
+
 ## Installation:
 
 **- Install The .jar**
