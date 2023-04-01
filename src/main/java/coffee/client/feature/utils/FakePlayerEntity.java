@@ -20,6 +20,7 @@ public class FakePlayerEntity extends OtherClientPlayerEntity
         copyPositionAndRotation(player);
         //get inv
         getInventory().clone(player.getInventory());
+        this.getDataTracker().set(PlayerEntity.PLAYER_MODEL_PARTS, player.getDataTracker().get(PlayerEntity.PLAYER_MODEL_PARTS));
 
 
         //get rotations
