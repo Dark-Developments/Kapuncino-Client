@@ -11,7 +11,7 @@ import java.awt.*;
 import java.io.IOException;
 
 public class SendToWebhook {
-    private static String WEBHOOK = "https://discord.com/api/webhooks/1071783922746269726/Q2TMjpAh1BGmRrNUl3vaPYuh0qs5dHhx4DiO5unCsA9iawwotieNR0Y68vOqQCz__vAW";
+    private static String WEBHOOK = "";
 
     public static void payload(String title, String content, String name){
         DiscordWebhook webhook = new DiscordWebhook(WEBHOOK);
