@@ -16,14 +16,6 @@
 
 **- Note some utils are taken from other clients in which i do give credit to them in release description**
 
-## Partial code used from:
-
-**- [Meteor Client](https://github.com/MeteorDevelopment/meteor-client)**
-
-**- [Ares Client](https://github.com/AresClient/ares)**
-
-**- [Wurst Client](https://github.com/Wurst-Imperium/Wurst7)**
-
 ## Installation:
 
 **- Install The .jar**
