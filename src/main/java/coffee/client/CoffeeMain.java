@@ -61,7 +61,6 @@ public class CoffeeMain implements ModInitializer {
     public static Thread FAST_TICKER;
 
     private static int CLIENT_VERSION = -1;
-    public static final IEventBus EVENT_BUS = new EventBus();
 
     public static int getClientVersion() {
         if (CLIENT_VERSION == -1) {
@@ -110,9 +109,6 @@ public class CoffeeMain implements ModInitializer {
         CompatHelper.init();
 
         log(Level.INFO, "Done initializing");
-
-        EVENT_BUS.registerLambdaFactory("coffee.client" , (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
-        EVENT_BUS.subscribe(this);
     }
 
     void initFonts() {

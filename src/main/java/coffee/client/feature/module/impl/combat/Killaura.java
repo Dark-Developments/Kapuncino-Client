@@ -5,7 +5,7 @@
 
 package coffee.client.feature.module.impl.combat;
 
-import baritone.api.BaritoneAPI;
+//import baritone.api.BaritoneAPI;
 import coffee.client.CoffeeMain;
 import coffee.client.feature.config.ListSetting;
 import coffee.client.feature.config.RangeSetting;
@@ -286,9 +286,9 @@ public class Killaura extends Module {
         if (!attackCooldown.hasExpired(getDelay() + currentRandomDelay)) {
             return;
         }
-        if (pauseBaritone && BaritoneAPI.getProvider().getPrimaryBaritone().getPathingBehavior().isPathing()) {
-            BaritoneHelper.pause("killaura");
-        }
+//        if (pauseBaritone && BaritoneAPI.getProvider().getPrimaryBaritone().getPathingBehavior().isPathing()) {
+//            BaritoneHelper.pause("killaura");
+//        }
         boolean smooth = smoothLook && attackMode == AttackMode.Single;
         if (smooth) {
             LivingEntity target = targets.get(0);

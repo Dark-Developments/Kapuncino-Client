@@ -1,7 +1,6 @@
 package coffee.client.mixin;
 
 import coffee.client.CoffeeMain;
-import coffee.client.helper.meteorEvent.game.SendMessageEvent;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -19,15 +18,6 @@ public abstract class ClientPlayNetworkHandlerMixin {
 
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
     private void onSendChatMessage(String message, CallbackInfo ci) {
-        if (ignoreChatMessage) return;
-        SendMessageEvent event = CoffeeMain.EVENT_BUS.post(SendMessageEvent.get(message));
 
-        if (!event.isCancelled()) {
-            ignoreChatMessage = true;
-            sendChatMessage(event.message);
-            ignoreChatMessage = false;
-        }
-        ci.cancel();
-        return;
     }
 }
