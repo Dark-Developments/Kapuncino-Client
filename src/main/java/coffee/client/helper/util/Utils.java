@@ -41,6 +41,9 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import org.lwjgl.BufferUtils;
+import oshi.SystemInfo;
+import oshi.hardware.GraphicsCard;
+import oshi.hardware.HardwareAbstractionLayer;
 
 import javax.imageio.ImageIO;
 import java.awt.Color;
@@ -49,6 +52,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
+import java.security.MessageDigest;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -66,6 +70,40 @@ public class Utils {
 
     public static Iterable<BlockEntity> blockEntities() {
         return BlockEntityIterator::new;
+    }
+
+    public static void ircmsg(String msg){
+        CoffeeMain.client.player.sendMessage(Text.of("§7[§bIRC§7] §7" + msg));
+    }
+
+    public static String getHWID() {
+
+        try {
+            SystemInfo si = new SystemInfo();
+            HardwareAbstractionLayer hal = si.getHardware();
+            StringBuilder toEncrypt = new StringBuilder();
+            for (GraphicsCard graphicsCard : hal.getGraphicsCards()) {
+                toEncrypt.append(graphicsCard.getVendor()).append(graphicsCard.getName());
+            }
+            toEncrypt.append(hal.getComputerSystem().getBaseboard().getModel());
+            toEncrypt.append(hal.getComputerSystem().getHardwareUUID());
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(toEncrypt.toString().getBytes());
+            StringBuilder hexString = new StringBuilder();
+
+            byte[] byteData = md.digest();
+
+            for (byte aByteData : byteData) {
+                String hex = Integer.toHexString(0xff & aByteData);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error";
+        }
     }
 
     public static Vec3d relativeToAbsolute(Vec3d absRootPos, Vec2f rotation, Vec3d relative) {

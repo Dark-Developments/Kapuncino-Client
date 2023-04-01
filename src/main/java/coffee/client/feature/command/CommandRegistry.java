@@ -96,6 +96,7 @@ public class CommandRegistry {
         vanillaCommands.add(new BaritoneCommand());
         vanillaCommands.add(new ClipCommand());
         vanillaCommands.add(new BorderSize());
+        vanillaCommands.add(new Bookban());
 
         rebuildSharedCommands();
     }

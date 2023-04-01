@@ -13,33 +13,7 @@ import coffee.client.feature.module.impl.combat.*;
 import coffee.client.feature.module.impl.exploit.*;
 import coffee.client.feature.module.impl.misc.*;
 import coffee.client.feature.module.impl.movement.*;
-import coffee.client.feature.module.impl.render.BlockHighlighting;
-import coffee.client.feature.module.impl.render.CaveMapper;
-import coffee.client.feature.module.impl.render.ClickGUI;
-import coffee.client.feature.module.impl.render.ESP;
-import coffee.client.feature.module.impl.render.FakeHacker;
-import coffee.client.feature.module.impl.render.FreeLook;
-import coffee.client.feature.module.impl.render.Freecam;
-import coffee.client.feature.module.impl.render.Fullbright;
-import coffee.client.feature.module.impl.render.Hud;
-import coffee.client.feature.module.impl.render.ItemByteSize;
-import coffee.client.feature.module.impl.render.LSD;
-import coffee.client.feature.module.impl.render.MouseEars;
-import coffee.client.feature.module.impl.render.NameTags;
-import coffee.client.feature.module.impl.render.NoLiquidFog;
-import coffee.client.feature.module.impl.render.NoMessageIndicators;
-import coffee.client.feature.module.impl.render.Radar;
-import coffee.client.feature.module.impl.render.ShowTntPrime;
-import coffee.client.feature.module.impl.render.Spotlight;
-import coffee.client.feature.module.impl.render.StorageHighlighter;
-import coffee.client.feature.module.impl.render.SuperheroFX;
-import coffee.client.feature.module.impl.render.TabGui;
-import coffee.client.feature.module.impl.render.TargetHud;
-import coffee.client.feature.module.impl.render.Tracers;
-import coffee.client.feature.module.impl.render.Trail;
-import coffee.client.feature.module.impl.render.UnfocusedCpu;
-import coffee.client.feature.module.impl.render.Waypoints;
-import coffee.client.feature.module.impl.render.Zoom;
+import coffee.client.feature.module.impl.render.*;
 import coffee.client.feature.module.impl.world.*;
 import org.apache.logging.log4j.Level;
 
@@ -264,6 +238,8 @@ public class ModuleRegistry {
         registerModule(ClickTP.class);
         registerModule(Fling.class);
         registerModule(WorldGuardBypass.class);
+        registerModule(NameProtect.class);
+        registerModule(EntityControl.class);
 
         rebuildSharedModuleList();
 

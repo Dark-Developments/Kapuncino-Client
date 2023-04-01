@@ -63,6 +63,7 @@ dependencies {
 	libImpl(name: "NetMC-1.0.0")
 	libImpl(project(":Authlib"))
 	libImpl(project(":Eventlib"))
+	libImpl("org.java-websocket:Java-WebSocket:1.5.3")
 	modImpl("com.github.0x3C50:Renderer:master-SNAPSHOT")
 
 	modImpl( "meteordevelopment:orbit:${project.orbit_version}")

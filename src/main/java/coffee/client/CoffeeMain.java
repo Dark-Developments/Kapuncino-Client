@@ -5,6 +5,7 @@
 
 package coffee.client;
 
+import baritone.api.BaritoneAPI;
 import coffee.client.feature.addon.AddonManager;
 import coffee.client.feature.command.CommandRegistry;
 import coffee.client.feature.gui.FastTickable;
@@ -14,6 +15,7 @@ import coffee.client.feature.module.ModuleRegistry;
 import coffee.client.feature.module.impl.misc.ClientSettings;
 import coffee.client.helper.CompatHelper;
 import coffee.client.helper.event.EventSystem;
+import coffee.client.helper.event.impl.KeyboardEvent;
 import coffee.client.helper.event.impl.WindowInitEvent;
 import coffee.client.helper.font.FontRenderers;
 import coffee.client.helper.manager.ConfigManager;
@@ -21,6 +23,8 @@ import coffee.client.helper.util.Rotations;
 import coffee.client.helper.util.Utils;
 import me.x150.jmessenger.MessageSubscription;
 import me.x150.jmessenger.impl.SubscriberRegisterEvent;
+import meteordevelopment.orbit.EventBus;
+import meteordevelopment.orbit.IEventBus;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
@@ -29,12 +33,14 @@ import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.option.KeyBinding;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
 
 import java.io.File;
+import java.lang.invoke.MethodHandles;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +51,7 @@ import java.util.stream.Collectors;
 public class CoffeeMain implements ModInitializer {
 
     public static final String MOD_NAME = "Kapuncino";
+    public static String sessionKey = null;
     public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
     public static final MinecraftClient client = MinecraftClient.getInstance();
     public static final File BASE = new File(MinecraftClient.getInstance().runDirectory, "coffee"); //Dont want to change as people would have to redo ALL settings
@@ -54,6 +61,7 @@ public class CoffeeMain implements ModInitializer {
     public static Thread FAST_TICKER;
 
     private static int CLIENT_VERSION = -1;
+    public static final IEventBus EVENT_BUS = new EventBus();
 
     public static int getClientVersion() {
         if (CLIENT_VERSION == -1) {
@@ -102,6 +110,9 @@ public class CoffeeMain implements ModInitializer {
         CompatHelper.init();
 
         log(Level.INFO, "Done initializing");
+
+        EVENT_BUS.registerLambdaFactory("coffee.client" , (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
+        EVENT_BUS.subscribe(this);
     }
 
     void initFonts() {
@@ -181,4 +192,9 @@ public class CoffeeMain implements ModInitializer {
         }
     }
 
+    public static String generateOrGetSessionToken() {
+        if (sessionKey != null) return sessionKey;
+        sessionKey = RandomStringUtils.randomAlphabetic(32);
+        return sessionKey;
+    }
 }

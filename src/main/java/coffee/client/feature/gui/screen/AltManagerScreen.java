@@ -351,10 +351,10 @@ public class AltManagerScreen extends ClientScreen implements FastTickable {
     @Override
     public void renderInternal(MatrixStack stack, int mouseX, int mouseY, float delta) {
         Renderer.R2D.renderQuad(stack, bg, 0, 0, width, height);
-        title.drawString(stack, "Coffee", 10, 10, 0xFFFFFF, false);
+        title.drawString(stack, CoffeeMain.MOD_NAME, 10, 10, 0xFFFFFF, false);
         titleSmall.drawString(stack,
             "Alt manager",
-            10 + title.getStringWidth("Coffee") + 5,
+            10 + title.getStringWidth(CoffeeMain.MOD_NAME) + 5,
             10 + title.getMarginHeight() - titleSmall.getMarginHeight() - 1,
             0xFFFFFF,
             false);

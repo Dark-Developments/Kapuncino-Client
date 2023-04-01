@@ -51,6 +51,7 @@ public class HomeScreen extends AAScreen {
     boolean currentAccountTextureLoaded = false;
     UUID previousChecked = null;
     boolean showedCompatWarn = false;
+    public static String LOG = "";
 
     private HomeScreen() {
         super(MSAAFramebuffer.MAX_SAMPLES);
@@ -66,8 +67,7 @@ public class HomeScreen extends AAScreen {
     void load() {
         loaded = true;
         try {
-            HomeScreen.changelog = IOUtils.toString(Objects.requireNonNull(HomeScreen.class.getClassLoader().getResourceAsStream("changelogLatest.txt")),
-                StandardCharsets.UTF_8);
+            HomeScreen.changelog = Objects.requireNonNull(LOG);
             updateCurrentAccount(() -> {
 
             });
