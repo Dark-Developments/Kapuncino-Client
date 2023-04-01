@@ -21,6 +21,6 @@ public abstract class EyeThrownMixin {
 
     @Inject(method = "use", at = @At("TAIL"))
     protected void afterUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable info) {
-        if (ModuleRegistry.getByClass(StrongholdLocator.class).isEnabled()) EntityRaycaster.setDelay(4);
+//        if (ModuleRegistry.getByClass(StrongholdLocator.class).isEnabled()) EntityRaycaster.setDelay(4);
     }
 }
