@@ -37,14 +37,12 @@ public class JinxUtils {
 
         //For some reason doesnt render on first enable in world
         //So for quick fix we un-render then re-render it :> bad fix ik but easy fix
-        fakePlayer.resetPlayerPosition();
         fakePlayer.despawn();
 
         fakePlayer = new FakePlayerEntity();
     }
 
     public static void RemoveFakePlayer(){
-        fakePlayer.resetPlayerPosition();
         fakePlayer.despawn();
     }
     public static String generateMessage(int amount) {
