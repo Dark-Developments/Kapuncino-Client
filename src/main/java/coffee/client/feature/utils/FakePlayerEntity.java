@@ -17,7 +17,7 @@ public class FakePlayerEntity extends OtherClientPlayerEntity
     public FakePlayerEntity()
     {
         super(CoffeeMain.client.world, CoffeeMain.client.player.getGameProfile());
-
+        copyPositionAndRotation(player);
         //get inv
         getInventory().clone(player.getInventory());
 
