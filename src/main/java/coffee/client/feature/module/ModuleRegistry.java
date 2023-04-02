@@ -245,6 +245,7 @@ public class ModuleRegistry {
         registerModule(AutoWalk.class);
         registerModule(PortalGodMode.class);
         registerModule(AntiHunger.class);
+        registerModule(MCE.class);
 
         rebuildSharedModuleList();
 

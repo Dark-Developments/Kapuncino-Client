@@ -4,9 +4,11 @@ import coffee.client.feature.config.DoubleSetting;
 import coffee.client.feature.config.EnumSetting;
 import coffee.client.feature.module.Module;
 import coffee.client.feature.module.ModuleType;
+import coffee.client.feature.utils.InvUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.GenericContainerScreen;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 
@@ -24,31 +26,25 @@ public class AutoTotem extends Module {
     @Override
     public void tick() {
         if(client.currentScreen instanceof GenericContainerScreen) return;
-        totemCount = getamount();
+        totemCount = InvUtils.getamount(Items.TOTEM_OF_UNDYING);
 
         if (client.player.getOffHandStack().getItem() == Items.TOTEM_OF_UNDYING) return;
         if (totemCount == 0) return;
-        int index = findtotem();
+        int index = InvUtils.finditem(Items.TOTEM_OF_UNDYING);
         if(index == -1) return;
 
         switch (mode.getValue()){
             case Smart -> {
                 if (client.player.getHealth() <= health.getValue()){
-                    putinoffhand(index);
+                    InvUtils.movetoslot(45, index);
                 }
             }
 
             case Strict -> {
-                putinoffhand(index);
+                InvUtils.movetoslot(45, index);
             }
         }
 
-    }
-
-    private void putinoffhand(int slot){
-        client.interactionManager.clickSlot(0, getslot(slot), 0, SlotActionType.PICKUP, client.player);
-        client.interactionManager.clickSlot(0, 45, 0, SlotActionType.PICKUP, client.player);
-        client.interactionManager.clickSlot(0, getslot(slot), 0, SlotActionType.PICKUP, client.player);
     }
 
     @Override
@@ -75,32 +71,6 @@ public class AutoTotem extends Module {
     public void onHudRender() {
 
     }
-
-    public static int findtotem() {
-        int index = -1;
-        for(int i = 0; i < 45; i++) {
-            if(MinecraftClient.getInstance().player.getInventory().getStack(i).getItem() == Items.TOTEM_OF_UNDYING) {
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
-
-    public static int getamount() {
-        int amount = 0;
-        for(int i = 0; i < 45; i++) {
-            if(MinecraftClient.getInstance().player.getInventory().getStack(i).getItem() == Items.TOTEM_OF_UNDYING) {
-                amount = amount + 1;
-            }
-        }
-        return amount;
-    }
-
-    public static int getslot(int index) {
-        return index < 9 ? index + 36 : index;
-    }
-
     public enum modes{
         Strict,
         Smart
