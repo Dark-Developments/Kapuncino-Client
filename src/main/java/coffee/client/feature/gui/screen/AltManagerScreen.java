@@ -5,6 +5,7 @@
 
 package coffee.client.feature.gui.screen;
 
+import com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService;
 import coffee.client.CoffeeMain;
 import coffee.client.feature.gui.FastTickable;
 import coffee.client.feature.gui.notifications.hudNotif.HudNotification;
@@ -22,6 +23,8 @@ import coffee.client.helper.render.Rectangle;
 import coffee.client.helper.render.Renderer;
 import coffee.client.helper.render.Texture;
 import coffee.client.helper.util.Transitions;
+import coffee.client.login.EasyMC.AltTokenResponse;
+import coffee.client.login.EasyMC.EasyMCRequest;
 import coffee.client.login.MicrosoftLogin;
 import coffee.client.login.mojang.MinecraftAuthenticator;
 import coffee.client.login.mojang.MinecraftToken;
@@ -49,6 +52,8 @@ import org.lwjgl.opengl.GL40C;
 
 import java.awt.Color;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -63,6 +68,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class AltManagerScreen extends ClientScreen implements FastTickable {
+    public static String EasyMCToken = null;
     public static final Map<UUID, Texture> texCache = new HashMap<>();
     static final File ALTS_FILE = new File(CoffeeMain.BASE, "alts.sip");
     static final ConfigContainer CONFIG_CONTAINER = new ConfigContainer(ALTS_FILE, new JsonArray());
@@ -429,7 +435,7 @@ public class AltManagerScreen extends ClientScreen implements FastTickable {
             RenderSystem.defaultBlendFunc();
 
             String mail;
-            if (this.selectedAlt.storage.type != AddScreenOverlay.AccountType.CRACKED) {
+            if (this.selectedAlt.storage.type != AddScreenOverlay.AccountType.CRACKED && this.selectedAlt.storage.type != AddScreenOverlay.AccountType.EASYMC) {
                 mail = this.selectedAlt.storage.email;
                 String[] mailPart = mail.split("@");
                 String domain = mailPart[mailPart.length - 1];
@@ -442,7 +448,7 @@ public class AltManagerScreen extends ClientScreen implements FastTickable {
                 mail = "No email bound";
             }
             AltContainer.PropEntry[] props = new AltContainer.PropEntry[] {
-                new AltContainer.PropEntry(this.selectedAlt.storage.type == AddScreenOverlay.AccountType.CRACKED ? this.selectedAlt.storage.email : this.selectedAlt.storage.cachedName,
+                new AltContainer.PropEntry((this.selectedAlt.storage.type == AddScreenOverlay.AccountType.CRACKED || this.selectedAlt.storage.type == AddScreenOverlay.AccountType.EASYMC) ? this.selectedAlt.storage.email : this.selectedAlt.storage.cachedName,
                     FontRenderers.getCustomSize(22),
                     this.selectedAlt.storage.valid ? 0xFFFFFF : 0xFF3333), new AltContainer.PropEntry(mail, FontRenderers.getRenderer(), 0xAAAAAA),
                 new AltContainer.PropEntry("Type: " + this.selectedAlt.storage.type.s, FontRenderers.getRenderer(), 0xAAAAAA) };
@@ -840,6 +846,8 @@ public class AltManagerScreen extends ClientScreen implements FastTickable {
             AccountType value = AccountType.values()[accountTypeI];
             if (value == AccountType.CRACKED && !email.getText().isEmpty()) {
                 return true;
+            } else if (value == AccountType.EASYMC && !email.getText().isEmpty()) {
+                return true;
             } else if (value == AccountType.MICROSOFT) { // we're gonna do a little trolling with this anyways
                 return true;
             } else {
@@ -941,7 +949,7 @@ public class AltManagerScreen extends ClientScreen implements FastTickable {
         }
 
         enum AccountType {
-            MOJANG("Mojang"), MICROSOFT("Microsoft"), CRACKED("Cracked");
+            MOJANG("Mojang"), MICROSOFT("Microsoft"), CRACKED("Cracked"), EASYMC("EasyMC");
 
             final String s;
 
@@ -982,6 +990,7 @@ public class AltManagerScreen extends ClientScreen implements FastTickable {
         }
 
         public void login() {
+            EasyMCToken = null;
             if (storage.didSuccessfulLogin) {
                 return;
             }
@@ -1011,6 +1020,16 @@ public class AltManagerScreen extends ClientScreen implements FastTickable {
                         storage.cachedUuid = UUID.randomUUID();
                         storage.cachedName = storage.email;
                         storage.accessToken = "coffeelmao";
+                    }
+
+                    case EASYMC -> {
+                        EasyMCRequest request = new EasyMCRequest();
+                        AltTokenResponse response = request.getResponse(storage.email);
+
+                        storage.cachedUuid = UUID.fromString(response.getUuid());
+                        storage.cachedName = response.getMcName();
+                        storage.accessToken = response.getSession();
+                        EasyMCToken = response.getSession();
                     }
                 }
                 //                MinecraftAuthenticator auth = new MinecraftAuthenticator();
@@ -1104,7 +1123,7 @@ public class AltManagerScreen extends ClientScreen implements FastTickable {
             RenderSystem.setShaderTexture(0, tex);
             Renderer.R2D.renderTexture(stack, originX + padding, originY + padding, texWidth, texHeight, 0, 0, 64, 64, 64, 64);
             String mail;
-            if (this.storage.type != AddScreenOverlay.AccountType.CRACKED) {
+            if (this.storage.type != AddScreenOverlay.AccountType.CRACKED && this.storage.type != AddScreenOverlay.AccountType.EASYMC) {
                 mail = this.storage.email;
                 String[] mailPart = mail.split("@");
                 String domain = mailPart[mailPart.length - 1];
@@ -1116,7 +1135,7 @@ public class AltManagerScreen extends ClientScreen implements FastTickable {
             } else {
                 mail = "No email bound";
             }
-            PropEntry[] props = new PropEntry[] { new PropEntry(this.storage.type == AddScreenOverlay.AccountType.CRACKED ? this.storage.email : this.storage.cachedName,
+            PropEntry[] props = new PropEntry[] { new PropEntry((this.storage.type == AddScreenOverlay.AccountType.CRACKED || this.storage.type == AddScreenOverlay.AccountType.EASYMC) ? this.storage.email : this.storage.cachedName,
                 FontRenderers.getCustomSize(22),
                 storage.valid ? 0xFFFFFF : 0xFF3333), new PropEntry("Email: " + mail, FontRenderers.getRenderer(), 0xAAAAAA)
                 /*, new PropEntry("Type: " + this.storage.type.s, FontRenderers.getRenderer(), 0xAAAAAA)*/ };

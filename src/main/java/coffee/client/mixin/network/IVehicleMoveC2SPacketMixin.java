@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(VehicleMoveC2SPacket.class)
 public interface IVehicleMoveC2SPacketMixin {
+
     @Mutable
     @Accessor("x")
     void setX(double x);

@@ -37,7 +37,6 @@ public abstract class ChatScreenMixin {
             if (!chatText.startsWith("/")) {
                 StringBuilder rvmsg = new StringBuilder(chatText).reverse();
                 text = "\u202E " + rvmsg;
-                addtohistory = false;
             }
         }
 

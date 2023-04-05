@@ -19,6 +19,17 @@ public class InvUtils {
         return index;
     }
 
+    public static int findItemInHotbar(Item item) {
+        int index = -1;
+        for(int i = 0; i < 9; i++) {
+            if(MinecraftClient.getInstance().player.getInventory().getStack(i).getItem() == item) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
     public static int getamount(Item item) {
         int amount = 0;
         for(int i = 0; i < 45; i++) {

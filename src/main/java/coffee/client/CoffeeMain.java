@@ -109,6 +109,7 @@ public class CoffeeMain implements ModInitializer {
         CompatHelper.init();
 
         log(Level.INFO, "Done initializing");
+        
     }
 
     void initFonts() {

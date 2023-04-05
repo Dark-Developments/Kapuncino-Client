@@ -89,6 +89,7 @@
     "Accessor.ClientChunkManagerAccessor",
     "Accessor.ClientChunkMapAccessor",
     "Accessor.TextHandlerAccessor",
+    "network.ClientLoginNetworkHandlerMixin",
     "render.ChatHudLineMixin",
     "screen.TitleScreenMixin"
   ],

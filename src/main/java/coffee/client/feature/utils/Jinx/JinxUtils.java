@@ -163,38 +163,4 @@ public class JinxUtils {
         ((ClientConnectionInvoker) connection).sendImmediately(new PlayerMoveC2SPacket.PositionAndOnGround(player.getX(), player.getY() + distance, player.getZ(), true), null);
         player.setPosition(player.getPos().add(0, distance, 0));
     }
-
-    public void verticalClipBad(double distance, ClientPlayerEntity player) {
-        // this might not work
-        // another idea is to send multiple move packets in one tick to bypass the moved to quickly check
-        // and then send the final clip move packet within this tick
-        // if (d11 - d10 > Math.max(f2, Math.pow((double) (org.spigotCoffeeMain.client.SpigotConfig.movedTooQuicklyMultiplier * (float) i * speed), 2))
-        // int i = this.receivedMovePacketCount - this.knownMovePacketCount
-        // which is reset every tick
-        // nah probably won't work because of the code above
-        // but you haven't properly examined it yet
-        // actually might work as vclip limit is 50 as you can only send max of 5 packets before i gets set to 1
-        // or 20 packets (200 blocks) if I'm interpreting the code correctly
-
-        ClientWorld world = MinecraftClient.getInstance().world;
-        if (distance == 0 || world == null) return;
-        // no exploit/method known for going down when colliding so just teleport directly
-        // also edge case for when player is inside block but oh well not intended use case
-        if (distance < 0 || Math.abs(distance) < 0.27 || world.isSpaceEmpty(player.getBoundingBox().stretch(0, distance, 0))) {
-            player.setPosition(player.getPos().add(0, distance, 0));
-            return;
-        }
-
-        double distanceTravelled = 0f;
-        while (Math.abs(distanceTravelled) < Math.abs(distance)) {
-            double freelyTraversableDistance = 0f;
-            Box playerBox = player.getBoundingBox();
-
-            while (world.isSpaceEmpty(playerBox)) {
-                freelyTraversableDistance += 0.27 * Math.signum(distance);
-                playerBox.stretch(0, 0.27 * Math.signum(distance), 0);
-            }
-            if (freelyTraversableDistance != 0) freelyTraversableDistance -= 0.27 * Math.signum(distance);
-        }
-    }
 }
