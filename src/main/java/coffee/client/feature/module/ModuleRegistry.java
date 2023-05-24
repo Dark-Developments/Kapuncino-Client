@@ -249,6 +249,7 @@ public class ModuleRegistry {
         registerModule(AutoRespawn.class);
         registerModule(Automount.class);
         registerModule(Advertise.class);
+        registerModule(StorageVoider.class);
 
         rebuildSharedModuleList();
 
