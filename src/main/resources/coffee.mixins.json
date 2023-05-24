@@ -3,7 +3,6 @@
   "package": "coffee.client.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "GenericContainerScreenMixin",
     "AbstractFabricPlatformMixin",
     "ChunkAccessor",
     "ClientBrandRetrieverMixin",
@@ -74,7 +73,8 @@
     "screen.MultiplayerScreenMixin",
     "screen.ScreenMixin",
     "screen.SelectWorldScreenMixin",
-    "screen.SignEditScreenMixin"
+    "screen.SignEditScreenMixin",
+    "screen.GenericContainerScreenMixin"
   ],
   "client": [
     "AbstractSignEditScreenAccessor",
