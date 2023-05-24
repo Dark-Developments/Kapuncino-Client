@@ -2,7 +2,6 @@ package coffee.client.feature.module.impl.Grief;
 
 import coffee.client.feature.module.Module;
 import coffee.client.feature.module.ModuleType;
-import coffee.client.feature.utils.Jinx.JinxExecutor;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
@@ -27,7 +26,7 @@ public class StorageVoider extends Module {
     }
 
     public void voider(ScreenHandler handler) {
-        JinxExecutor.execute(() -> moveSlots(handler, 0, getRows(handler) * 9));
+        moveSlots(handler, 0, getRows(handler) * 9);
     }
 
     @Override
