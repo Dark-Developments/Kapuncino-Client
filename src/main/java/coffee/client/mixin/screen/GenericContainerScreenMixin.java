@@ -28,7 +28,7 @@ public abstract class GenericContainerScreenMixin extends HandledScreen<GenericC
             addDrawableChild(
                     new ButtonWidget.Builder(Text.literal("Voider"), button -> storageVoider.voider(handler))
                             .position(x + backgroundWidth - 46, y + 2)
-                            .size(56, 14)
+                            .size(40, 12)
                             .build()
             );
         }
