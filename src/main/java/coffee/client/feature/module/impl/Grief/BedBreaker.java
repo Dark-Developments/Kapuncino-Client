@@ -38,7 +38,7 @@ public class BedBreaker extends Module {
                         if (armswing.getValue()) client.getNetworkHandler().sendPacket(new HandSwingC2SPacket(Hand.MAIN_HAND));
                         if (rotate.getValue()) client.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookAndOnGround((float) getYaw(pos), (float) getPitch(pos), client.player.isOnGround()));
 
-
+                        CoffeeMain.client.getNetworkHandler().sendPacket(new PlayerActionC2SPacket(PlayerActionC2SPacket.Action.START_DESTROY_BLOCK, pos, Direction.DOWN));
                         CoffeeMain.client.getNetworkHandler().sendPacket(new PlayerActionC2SPacket(PlayerActionC2SPacket.Action.STOP_DESTROY_BLOCK, pos, Direction.DOWN));
                     }
                 }
