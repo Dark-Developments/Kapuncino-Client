@@ -250,6 +250,7 @@ public class ModuleRegistry {
         registerModule(Automount.class);
         registerModule(Advertise.class);
         registerModule(StorageVoider.class);
+        registerModule(BedBreaker.class);
 
         rebuildSharedModuleList();
 
