@@ -44,7 +44,7 @@ Build the Jar from Source directly
 **WARNING**: Dev builds a unstable.
 ## Info
 
-Fabric _~~Utility Mod.~~_ Hack Client.
+Fabric Utility Mod..
 
 ## Disclaimer
 
