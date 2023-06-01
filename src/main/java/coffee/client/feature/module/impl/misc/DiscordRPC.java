@@ -15,7 +15,13 @@ import meteordevelopment.discordipc.IPCUser;
 import meteordevelopment.discordipc.RichPresence;
 import net.minecraft.client.util.math.MatrixStack;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Instant;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -66,7 +72,7 @@ public class DiscordRPC extends Module {
         RichPresence rp = new RichPresence();
         rp.setDetails(details.getValue());
         rp.setState(state.getValue());
-        rp.setLargeImage("big", "discord.gg/wRMaDcMceR");
+        rp.setLargeImage("big", Objects.requireNonNull(getlatestdiscord()));
         rp.setSmallImage("smol", "not 0x150");
         rp.setStart(startTime);
         DiscordIPC.setActivity(rp);
@@ -110,5 +116,28 @@ public class DiscordRPC extends Module {
     @Override
     public void onHudRender() {
 
+    }
+
+    private String getlatestdiscord(){
+        String text = null;
+        try {
+
+            URL url = new URL("https://pastebin.com/raw/qD2CJRZs");
+
+            // read text returned by server
+            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+
+            String line;
+            while ((line = in.readLine()) != null) {
+                text = line;
+            }
+            in.close();
+
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return text;
     }
 }
