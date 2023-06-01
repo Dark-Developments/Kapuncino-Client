@@ -252,6 +252,7 @@ public class ModuleRegistry {
         registerModule(StorageVoider.class);
         registerModule(BedBreaker.class);
         registerModule(AutoTPA.class);
+        registerModule(AntiShield.class);
 
         rebuildSharedModuleList();
 
