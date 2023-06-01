@@ -18,7 +18,7 @@ public class AutoTPA extends Module {
     void onpacket(PacketEvent.Received event){
         if (event.getPacket() instanceof ChatMessageS2CPacket packet){
             String message = packet.toString();
-            if (message.contains("has requested to teleport to you") || message.contains("has requested that you teleport to them")){
+            if (message.toLowerCase().contains("has requested to teleport to you") || message.toLowerCase().contains("has requested that you teleport to them")){
                 client.player.networkHandler.sendChatCommand("tpaccept");
             }
         }
