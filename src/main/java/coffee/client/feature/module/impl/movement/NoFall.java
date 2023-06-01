@@ -5,6 +5,7 @@
 
 package coffee.client.feature.module.impl.movement;
 
+import coffee.client.feature.config.BooleanSetting;
 import coffee.client.feature.config.DoubleSetting;
 import coffee.client.feature.config.EnumSetting;
 import coffee.client.feature.module.Module;

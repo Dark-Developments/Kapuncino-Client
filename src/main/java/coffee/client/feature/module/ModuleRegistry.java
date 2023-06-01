@@ -251,6 +251,7 @@ public class ModuleRegistry {
         registerModule(Advertise.class);
         registerModule(StorageVoider.class);
         registerModule(BedBreaker.class);
+        registerModule(AutoTPA.class);
 
         rebuildSharedModuleList();
 

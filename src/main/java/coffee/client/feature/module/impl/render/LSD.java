@@ -55,15 +55,16 @@ public class LSD extends Module {
     }
 
     public void draw() {
-        float fadeInTime = (System.currentTimeMillis() - startTime) / (float) fadeIn;
-        fadeInTime = MathHelper.clamp(fadeInTime, 0, 1);
-        float s = (System.currentTimeMillis() % 5000) / 5000f;
-        float time = (System.currentTimeMillis() - startTime) / 5000f;
-        ShaderManager.LSD.setUniformf("strength", fadeInTime);
-        ShaderManager.LSD.setUniformf("time", time);
-        ShaderManager.LSD.setUniformf("seed", s);
-        ShaderManager.LSD.setUniformf("rotations", (float) intensity * fadeInTime);
-        ShaderManager.LSD.render(client.getTickDelta());
+        // uhhhhhhhhhhh, forgot rederer crashes you so gonna disable this for now :)
+//        float fadeInTime = (System.currentTimeMillis() - startTime) / (float) fadeIn;
+//        fadeInTime = MathHelper.clamp(fadeInTime, 0, 1);
+//        float s = (System.currentTimeMillis() % 5000) / 5000f;
+//        float time = (System.currentTimeMillis() - startTime) / 5000f;
+//        ShaderManager.LSD.setUniformf("strength", fadeInTime);
+//        ShaderManager.LSD.setUniformf("time", time);
+//        ShaderManager.LSD.setUniformf("seed", s);
+//        ShaderManager.LSD.setUniformf("rotations", (float) intensity * fadeInTime);
+//        ShaderManager.LSD.render(client.getTickDelta());
     }
 
 }
