@@ -9,6 +9,10 @@
 <img alt="GitHub contributors" src="https://img.shields.io/github/v/release/Nxyi/Coffee-Client-1.19.4?display_name=tag&include_prereleases&color=black">
     <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Nxyi/Coffee-Client-1.19.4/total?color=black">
 
+<div align="center">
+  <a href="https://discord.gg/kja3YYV7R9"><img src="https://invidget.switchblade.xyz/kja3YYV7R9"></a>
+</div>
+
 </div>
 
 ## Info:
